@@ -33,7 +33,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.PathResource;
 
 import com.learn2code.springbatchkit.Interceptors.JobInterceptor;
-import com.learn2code.springbatchkit.batch.DBWriter;
 import com.learn2code.springbatchkit.constant.Constants;
 import com.learn2code.springbatchkit.models.User;
 
@@ -127,7 +126,7 @@ public class BatchJobConfiguration {
 		flatFileItemReader.setLinesToSkip(1);
 		flatFileItemReader.setLineMapper(lineMapper());
 		return flatFileItemReader;
-	}
+	}	
 
 	@Bean
 	public LineMapper<User> lineMapper() {
