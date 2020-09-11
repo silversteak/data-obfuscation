@@ -1,6 +1,8 @@
 package com.learn2code.springbatchkit.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -25,6 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learn2code.springbatchkit.constant.Constants;
+import com.learn2code.springbatchkit.models.User;
+import com.learn2code.springbatchkit.repository.UserRepository;
+
 
 @RestController
 @RequestMapping("/api/load")
@@ -42,6 +47,9 @@ public class Controller {
 	@Autowired
 	Job job;
 
+	@Autowired
+	UserRepository userRepository;
+	
 	private JobExecution execution = null;
 	
 	@GetMapping(("/{fileName:.+}"))
@@ -62,5 +70,13 @@ public class Controller {
 		}
 		return new ResponseEntity<String>(execution.getStatus().toString(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/users")
+	public List<User> getUser(){
+		List<User> users = new ArrayList<>();
+		users = userRepository.getListUser();
+		return users;
+	}
+	
 
 }
